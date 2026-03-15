@@ -13,6 +13,9 @@ hero:
       text: Get Started
       link: /guide/getting-started
     - theme: alt
+      text: View on GitHub
+      link: https://github.com/Sunwood-ai-labs/codex-spark-eclipse-legion
+    - theme: alt
       text: Read in Japanese
       link: /ja/
 features:
@@ -20,6 +23,8 @@ features:
     details: Give every Spark agent a short codename and an epithet so the final report feels deliberate and easy to scan.
   - title: Sharp ownership boundaries
     details: Split work into 2-4 independent slices, keep the critical path local, and delegate only bounded sidecar tasks.
+  - title: Manager-led delivery
+    details: The main agent remains accountable for decisions and synthesis, while subagents execute explicit, bounded tasks with clear acceptance criteria.
   - title: Calm recovery paths
     details: Handle thread limits, wait timeouts, interrupted runs, and model-visibility ambiguity without losing momentum.
 ---
@@ -31,7 +36,6 @@ This repository turns the raw skill definition into a public-facing package with
 ## What to read next
 
 - Start with [Getting Started](/guide/getting-started) for installation, prerequisites, and the first prompt.
-- Continue to [Usage](/guide/usage) for delegation patterns and report expectations.
-- Visit [Architecture](/guide/architecture) when you want to understand why the repository is structured the way it is.
+- Continue to [Usage](/guide/usage) for delegation scope design, completion criteria, and QA inventory examples.
+- Visit [Architecture](/guide/architecture) to see why the repository keeps manager and worker responsibilities separated in a compact layout.
 - Keep [Troubleshooting](/guide/troubleshooting) handy for stalled or interrupted subagent runs.
-

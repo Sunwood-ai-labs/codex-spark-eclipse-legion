@@ -10,8 +10,19 @@
 ## 小さく保つ理由
 
 このスキルは、素早く監査できること自体が価値です。運用指示、テンプレート、リカバリー資料を分けることで、必要な答えにすぐ辿りつける構成を維持しています。
+2名運用でも同様に悪魔の代弁者枠は 1 体固定とし、実働帯域不足時は fan-out を削減または中断して同時運用数を縮小します。
 
 ## ドキュメント設計
+
+管理役（主担当）と実働役（subagent）の役割分担を明確にし、成果物単位の二重確認と全体統合監査を分離します。  
+時系列は `producer_done -> manager_acceptance -> second_pass -> manager_synthesis_draft -> devil_audit -> final_accept` です。  
+`second_pass` が各成果物の二重確認、`devil_audit` が全体統合時の反証監査です。
+
+運用上の固定ルールは次のとおりです。
+- `second_pass` は `qa_verifier` / `peer_verifier` が成果物ごとに実施する独立再検証。  
+- `devil_audit` は `manager_synthesis_draft` を対象に、主担当・複数成果物の横断リスクを評価する悪魔の代弁者監査。  
+- `manager_acceptance=accepted && second_pass_status=pass` が満たされ、かつ `disposition` が未解決でないことを確認してから最終採用に進む。
+- この 2 段の同時運用が担保できない場合は、fan-out を縮小または中断する。
 
 VitePress サイトは、利用者が最初に必要とする順番に合わせています。
 

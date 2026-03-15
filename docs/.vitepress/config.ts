@@ -1,6 +1,8 @@
 import { defineConfig } from 'vitepress';
 
 const repoName = 'codex-spark-eclipse-legion';
+const repoUrl = 'https://github.com/Sunwood-ai-labs/codex-spark-eclipse-legion';
+const docsEditPattern = `${repoUrl}/edit/main/docs/:path`;
 const base = process.env.GITHUB_ACTIONS ? `/${repoName}/` : '/';
 const asset = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
@@ -57,6 +59,7 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
+    socialLinks: [{ icon: 'github', link: repoUrl }],
   },
   locales: {
     root: {
@@ -68,10 +71,15 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Guide', link: '/guide/getting-started' },
+          { text: 'GitHub', link: repoUrl },
           { text: 'Japanese', link: '/ja/' },
         ],
         sidebar: {
           '/guide/': englishSidebar,
+        },
+        editLink: {
+          pattern: docsEditPattern,
+          text: 'Edit this page on GitHub',
         },
         footer: {
           message: 'Released under the MIT License.',
@@ -96,10 +104,15 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'ガイド', link: '/ja/guide/getting-started' },
+          { text: 'GitHub', link: repoUrl },
           { text: 'English', link: '/' },
         ],
         sidebar: {
           '/ja/guide/': japaneseSidebar,
+        },
+        editLink: {
+          pattern: docsEditPattern,
+          text: 'このページを GitHub で編集',
         },
         footer: {
           message: 'MIT License で提供しています。',
@@ -116,4 +129,3 @@ export default defineConfig({
     },
   },
 });
-

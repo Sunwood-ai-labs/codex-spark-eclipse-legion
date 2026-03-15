@@ -8,7 +8,7 @@
 
 ## 導入フロー
 
-1. このリポジトリを Codex から参照できる場所に配置します。
+1. [GitHub](https://github.com/Sunwood-ai-labs/codex-spark-eclipse-legion) からこのリポジトリを取得し、Codex から参照できる場所に配置します。
 2. ルートの `SKILL.md`、`references/`、`agents/openai.yaml` をひとまとまりで保ちます。
 3. Spark チームメイトや並列担当が欲しい依頼で `$codex-spark-eclipse-legion` を明示します。
 
@@ -41,4 +41,3 @@ npm run docs:build
 - 委譲するスライスが本当に独立している
 - 各サブエージェントに具体的な担当範囲と終了条件がある
 - 最終報告で、各チームメイトの名前、担当、返却内容が分かる
-

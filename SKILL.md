@@ -9,23 +9,73 @@ Use this skill when the task should be pushed through native Codex subagents ins
 
 Default to the model slug `gpt-5.3-codex-spark`. Favor fast, bounded delegation with strong ownership and short reports over vague "go explore" prompts.
 
+## Management and Operator Split
+
+When you use this skill, you are the manager by default and should keep orchestration and final synthesis tight. Subagents are operators with bounded execution authority.
+
+- Main agent duty: define boundaries, coordinate dependencies, integrate outputs, and finalize decisions.
+- Subagent duty: execute only the scoped slice, keep to non-goals, and report results with QA inventory.
+- Treat every subagent as a `junior teammate` who needs explicit instructions and a checklist.
+
+## Unified Orchestration Model
+
+The flow for any plan with two or more subagents is:
+
+`producer_done -> manager_provisional_acceptance -> second_pass -> manager_synthesis_draft -> devil_audit -> final_accept`
+
+State vocabulary is fixed:
+
+- `manager_acceptance`: status of each producing output (`accepted`, `requires adjustment`, `blocked`)
+- `second_pass_status`: status of each producing output second validation (`pass`, `fail`, `blocked`)
+- `disposition`: Devil's Advocate result (`accepted`, `blocked`, `resolved`)
+
+Final completion condition:
+
+- `manager_acceptance = accepted` **and** `second_pass_status = pass`
+
+## Required Seats and Capacity
+
+For any plan with two or more subagents, both are required:
+
+- one dedicated Devil's Advocate seat for the entire run,
+- one second-pass lane for each producing subagent output.
+
+If required capacity cannot be ensured, do not fan-out; reduce scope and rerun with fewer agents.
+
+## Second-Validation Lane Rules
+
+Second-pass is one of:
+
+- `qa_verifier`: reproducible checks with commands/files/tests.
+- `peer_verifier`: independent confirmation from a disjoint ownership slice.
+
+`devils_advocate` is not a second-pass replacement. It is an assumption/risk audit lane used in `devil_audit` and only produces `disposition` and escalation actions.
+
+Run order:
+
+1. Reserve Devil's Advocate seat + per-output second-pass assignments before fan-out.
+2. Run producing and supporting subagents.
+3. On return, set `manager_provisional_acceptance` as `manager_acceptance` (`accepted`/`requires adjustment`/`blocked`).
+4. Run second-pass (`qa_verifier` or `peer_verifier`) for each producing output and record `second_pass_status`.
+5. Draft manager synthesis and provide to Devil's Advocate.
+6. Run Devil's Advocate audit and record `disposition`.
+7. Finalize only when completion condition holds.
+
 ## Use This Skill When
 
 - The user explicitly asks for `GPT-5.3-Codex-Spark`, Spark subagents, or "3 people in parallel".
 - The task splits cleanly into 2-4 independent tracks such as research slices, codebase questions, review slices, or disjoint file ownership.
-- The user wants named teammates, roles, or a final report that explains who investigated what.
-- The task benefits from fast parallel passes, but does not require shared mutable state across agents.
+- The user wants named teammates, roles, or a teammate-by-teammate final report.
+- The task benefits from fast parallel passes without shared mutable state across agents.
 
-Skip this skill when the next step is blocked on one urgent answer, the task is tiny, or multiple agents would collide on the same files.
+Skip this skill when the next step is urgent, the task is tiny, or multiple agents would collide on the same files.
 
 ## Naming Ritual
 
-Treat each spawned agent like a summoned specialist.
-
 - Give every agent a short proper name and a dramatic epithet.
-- Keep the pair memorable and readable in Japanese.
-- Match the name to the role so the report feels intentional rather than random.
-- Reuse the same names through the whole turn so the user can track who did what.
+- Keep the pair memorable and readable.
+- Match the name to role ownership.
+- Reuse the same names throughout a turn.
 
 Good examples:
 
@@ -39,81 +89,94 @@ Avoid names that are so long they make prompts noisy.
 
 1. Keep the immediate blocking step local. Delegate sidecar work, not the entire critical path.
 2. Split the task into 2-4 disjoint scopes with concrete acceptance criteria.
-3. Use `fork_context: false` by default. Turn it on only when the agent truly needs the exact conversation history.
-4. Set `model: "gpt-5.3-codex-spark"` explicitly for every subagent.
-5. Use `default` for general research, `explorer` for codebase questions, and `worker` only for bounded code edits with explicit file ownership.
-6. Spawn independent agents in parallel with `multi_tool_use.parallel`.
-7. While they run, do non-overlapping local work instead of idling.
-8. Wait only when a returned result is needed for the next local step.
-9. Close completed agents so you do not hit the thread limit.
-10. In the final response, report each teammate's name, epithet, scope, and outcome.
+   - Split only when the required Devil seat and required second-pass slots are guaranteed.
+3. Set `model: "gpt-5.3-codex-spark"` explicitly for every subagent.
+4. Spawn in parallel with `multi_tool_use.parallel`.
+5. While running, do non-overlapping local work.
+6. Wait only when the next local step requires returned results.
+7. Close completed agents so you do not hit thread limits.
+8. In final response, report names/epithets, scope, outcomes, and QA status.
 
 ## Prompt Rules
 
 Every delegated prompt should include:
 
 - A machine-usable handle such as `subagent 2`
-- A morale booster such as a short name and dramatic epithet
-- The exact scope: files, questions, market segment, or platform slice
-- The finish line: what to return and how short it should be
+- A short name and dramatic epithet
+- Exact scope and non-goals
+- Finish line and completion criteria checklist
+- A second-pass assignment for producing outputs (`qa_verifier` or `peer_verifier`)
 - Verification rules:
-  For web tasks, require dated sources and links.
-  For code tasks, require changed files and note that the agent is not alone in the codebase.
-- Non-goals so the agent does not drift into adjacent work
+  - web tasks: dated sources and links
+  - code tasks: changed files and non-goal boundaries
+- A QA inventory requirement and acceptance checks
 
-Use the templates in [references/prompt-patterns.md](./references/prompt-patterns.md) instead of rewriting these from scratch.
+For any plan with two or more subagents, include the required Devil seat, second-pass plan, and expected `manager_acceptance` / `second_pass_status` handling.
+
+QA inventory (required per subagent):
+
+1. File-level deliverables or findings with exact locations.
+2. Checks executed (commands, manual tests, comparisons, or reasoning notes).
+3. Assumptions or risks that could affect correctness.
+4. What is still unverified and why.
+5. Criterion status (`pass` / `fail` / `blocked`) for each item.
+6. `manager_acceptance` plus rationale.
+7. `second_pass_status` with lane (`qa_verifier` or `peer_verifier`) and evidence.
+8. For Devil's Advocate: `risk level`, `missing evidence`, `owner`, `required action`, `disposition`.
+
+Use templates in [references/prompt-patterns.md](./references/prompt-patterns.md).
 
 ## Operating Patterns
 
 ### Research fan-out
 
-- Split by source family or market, not by vague themes.
-- Good split: `PC/Steam`, `Japan console`, `mobile/streaming`.
-- Require each agent to cite dates because "latest" changes quickly.
+- Split by source family/market, not vague themes.
+- Require each agent to cite dates when using the web.
 
 ### Codebase reconnaissance
 
-- Use `explorer` agents for separate codebase questions.
-- Keep the integration, tradeoff call, and final explanation local.
+- Use independent `explorer` style subagents for questions.
+- Keep synthesis locally.
 
 ### Implementation split
 
-- Only use `worker` when write scopes are disjoint.
-- Assign ownership by file or module, not by abstract feature labels.
-- Tell workers they are not alone in the codebase and must not revert others' edits.
+- Use `worker` only when write scopes are disjoint.
+- Assign ownership by file/module.
 
 ### Review or QA swarm
 
-- One agent can inspect correctness, another can inspect tests, and another can inspect docs or release risks.
-- Synthesize findings locally so the user gets one coherent answer.
+- Separate correctness/tests/risk reviews by owner.
+- Synthesize findings locally to one coherent answer.
 
 ## Failure Handling
 
-- If you hit `agent thread limit reached`, close completed or idle agents first, then retry the spawn.
-- If `wait` times out, do not reflexively wait again. Either continue local work or relaunch a shorter prompt.
-- If agents come back `Interrupted`, shrink the prompt, disable `fork_context`, and ask for a smaller deliverable.
-- If a subagent's runtime cannot prove the model name, report that the model was requested as `gpt-5.3-codex-spark` and that runtime visibility may be hidden.
+- If `agent thread limit reached`, close completed/idle agents first, then retry.
+- If `wait` times out, continue local work or relaunch a shorter prompt.
+- If a subagent is `Interrupted`, shrink the prompt and request a smaller deliverable.
+- If model identity is not visible in runtime, report request as `gpt-5.3-codex-spark` was set.
 
-See [references/recovery.md](./references/recovery.md) for retry patterns and reporting language.
+See [references/recovery.md](./references/recovery.md) for retry language.
 
 ## Reporting Contract
 
-When you use this skill, the final response should make it easy to answer:
+Final response should include:
 
-- Which Spark subagents ran
-- Which names and epithets they were given
-- What each one owned
-- What each one returned
-- Which sources or checks backed the result
-- What was not finished or had to be retried
+- Which subagents ran and their roles
+- Exact ownership and returned findings
+- QA inventory from each output
+- Final `manager_acceptance`, `second_pass_status`, and Devil `disposition`
+- Evidence list and unresolved risks with owners
+- What was retried/not finished
 
-Short example:
+In multi-subagent plans, final output is complete only when:
 
-- `黒羽ライト / 深淵の観測者`: PC and Steam trend scan, returned dated source-backed summary.
-- `星影レイ / 月蝕の売上追跡卿`: Japanese console and sales ranking scan, returned domestic trend summary.
-- `紫苑ヴェスパー / 終焉の流行詠み`: Mobile and streaming trend scan, returned social buzz summary.
+- `manager_acceptance = accepted`
+- every producing output has `second_pass_status = pass`
+- Devil's Advocate `disposition` is recorded.
+
+Short example format remains team-wise with outcome summaries and risk statements.
 
 ## References
 
 - For reusable prompt shapes, read [references/prompt-patterns.md](./references/prompt-patterns.md).
-- For thread limits, timeouts, and retry wording, read [references/recovery.md](./references/recovery.md).
+- For thread limits and retries, read [references/recovery.md](./references/recovery.md).
