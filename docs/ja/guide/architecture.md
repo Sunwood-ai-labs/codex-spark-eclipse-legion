@@ -24,6 +24,12 @@
 - `manager_acceptance=accepted && second_pass_status=pass` が満たされ、かつ `disposition` が未解決でないことを確認してから最終採用に進む。
 - この 2 段の同時運用が担保できない場合は、fan-out を縮小または中断する。
 
+## フロー構成図
+
+![Codex Spark Eclipse Legion フロー構成図](/legion-orchestration-flow.drawio.svg)
+
+この再利用用アセットは、`SKILL.md` の運用モデルを図として固定したものです。ロール分担、正規フロー、fan-out 縮退条件、報告契約を 1 枚で参照でき、編集元は `docs/public/legion-orchestration-flow.drawio` にあります。
+
 VitePress サイトは、利用者が最初に必要とする順番に合わせています。
 
 - 導入手順

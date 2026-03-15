@@ -57,6 +57,12 @@ Codex Spark Eclipse Legion は、1 人では足りないが大規模オーケス
 - README と docs で再利用する SVG アセット
 - docs 検証と GitHub Pages 配信のための GitHub Actions workflow
 
+## フロー構成図
+
+![Codex Spark Eclipse Legion フロー構成図](docs/public/legion-orchestration-flow.drawio.svg)
+
+この図で、必須ロール、正規の時系列、fan-out を縮小する条件、最終報告の契約を一度に確認できます。
+
 ## ⚡ クイックスタート
 
 1. このリポジトリを Codex から参照できる場所に配置します。

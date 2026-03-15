@@ -25,6 +25,12 @@ The repository now ships a polished public surface:
 - reusable SVG identity assets for the README and docs
 - GitHub Actions workflows for docs validation and Pages deployment
 
+## Orchestration Flow
+
+![Codex Spark Eclipse Legion orchestration flow](docs/public/legion-orchestration-flow.drawio.svg)
+
+This diagram captures the required seats, canonical execution sequence, reduce-fan-out rules, and final reporting contract in one place.
+
 ## ⚡ Quick Start
 
 1. Place this repository somewhere your Codex environment can read it.

@@ -33,6 +33,12 @@ features:
 
 This repository turns the raw skill definition into a public-facing package with bilingual onboarding, docs, visual assets, and deployment automation. The root `SKILL.md` remains the source of truth, while these docs explain how to adopt and maintain it.
 
+## Flow At A Glance
+
+![Codex Spark Eclipse Legion orchestration flow](/legion-orchestration-flow.drawio.svg)
+
+Use this diagram when you want the whole operating model on one screen: required seats on the left, the mandatory flow in the middle, reduce-fan-out rules on the right, and status/reporting rules at the bottom.
+
 ## What to read next
 
 - Start with [Getting Started](/guide/getting-started) for installation, prerequisites, and the first prompt.

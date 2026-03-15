@@ -21,6 +21,12 @@ The structure is intentionally small so the main agent can keep control of the c
 
 In this model, the main agent remains the single point of policy and synthesis, while subagents are expected to run bounded slices with explicit scope and a QA inventory.
 
+## Orchestration flow diagram
+
+![Codex Spark Eclipse Legion orchestration flow](/legion-orchestration-flow.drawio.svg)
+
+The reusable diagram asset mirrors the governance model in `SKILL.md` and keeps the role split, canonical flow, reduce-fan-out rules, and reporting contract visible in one reference. The editable source lives at `docs/public/legion-orchestration-flow.drawio`.
+
 ## Documentation strategy
 
 The VitePress site mirrors the same structure that new users need:

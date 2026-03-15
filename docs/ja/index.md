@@ -35,6 +35,12 @@ features:
 
 このリポジトリは、生のスキル定義を README、日英 docs、視覚アセット、デプロイ自動化まで含めた公開向けパッケージに整えるためのものです。正本はルートの `SKILL.md` に置きつつ、ここでは導入と運用を分かりやすく説明します。
 
+## フロー全体図
+
+![Codex Spark Eclipse Legion フロー構成図](/legion-orchestration-flow.drawio.svg)
+
+左の必須ロール、中央の必須フロー、右の fan-out 縮退条件、下の status / report contract を一画面で確認できます。
+
 ## 運用方針
 
 時系列は `producer_done -> manager_acceptance -> second_pass -> manager_synthesis_draft -> devil_audit -> final_accept` です。  
