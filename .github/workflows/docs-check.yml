@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-docs:
     runs-on: ubuntu-latest
@@ -24,4 +27,3 @@ jobs:
 
       - name: Build documentation
         run: npm run docs:build
-
