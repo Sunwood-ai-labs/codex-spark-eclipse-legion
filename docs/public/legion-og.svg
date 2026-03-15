@@ -1,0 +1,36 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="76" y1="44" x2="1108" y2="592" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111F"/>
+      <stop offset="0.55" stop-color="#101828"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="text" x1="408" y1="160" x2="980" y2="406" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.48" stop-color="#FF8A30"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="106" y1="118" x2="356" y2="372" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14B8A6"/>
+      <stop offset="0.55" stop-color="#FF8A30"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <ellipse cx="214" cy="132" rx="210" ry="210" fill="#14B8A6" fill-opacity="0.16"/>
+  <ellipse cx="990" cy="154" rx="188" ry="188" fill="#FF8A30" fill-opacity="0.14"/>
+  <rect x="66" y="86" width="324" height="324" rx="76" fill="#08111F" stroke="#94A3B8" stroke-opacity="0.22"/>
+  <circle cx="228" cy="248" r="88" fill="#08111F" stroke="url(#ring)" stroke-width="14"/>
+  <path d="M146 282C161 316 195 340 238 340C277 340 311 319 327 288" stroke="#14B8A6" stroke-width="12" stroke-linecap="round"/>
+  <path d="M318 208C304 176 269 153 226 153C190 153 157 171 141 199" stroke="#FF8A30" stroke-width="12" stroke-linecap="round"/>
+  <path d="M262 152L277 175L303 183L284 200L288 228L262 215L236 228L240 200L221 183L247 175L262 152Z" fill="#F8FAFC"/>
+  <circle cx="172" cy="172" r="9" fill="#14B8A6"/>
+  <circle cx="346" cy="266" r="8" fill="#FF8A30"/>
+  <text x="428" y="192" fill="#9FF3E8" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="22" font-weight="700" letter-spacing="1.8">CODEX SKILL</text>
+  <text x="428" y="286" fill="url(#text)" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="66" font-weight="700">Codex Spark</text>
+  <text x="428" y="360" fill="url(#text)" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="66" font-weight="700">Eclipse Legion</text>
+  <text x="428" y="430" fill="#CBD5E1" font-family="'IBM Plex Sans JP','Segoe UI',sans-serif" font-size="30" font-weight="500">Named Spark subagents with explicit ownership,</text>
+  <text x="428" y="472" fill="#CBD5E1" font-family="'IBM Plex Sans JP','Segoe UI',sans-serif" font-size="30" font-weight="500">minimal context, and clean teammate reporting.</text>
+  <rect x="428" y="520" width="290" height="54" rx="27" fill="#FF8A30" fill-opacity="0.14" stroke="#FF9C4D" stroke-opacity="0.4"/>
+  <text x="573" y="555" text-anchor="middle" fill="#FED7AA" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="22" font-weight="700">gpt-5.3-codex-spark</text>
+</svg>

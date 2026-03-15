@@ -1,0 +1,16 @@
+{
+  "name": "codex-spark-eclipse-legion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public-facing docs and repository scaffolding for the Codex Spark Eclipse Legion skill.",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4"
+  }
+}
+

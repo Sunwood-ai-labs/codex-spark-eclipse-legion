@@ -1,0 +1,52 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="88" x2="1140" y2="572" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111F"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(296 168) rotate(90) scale(250 330)">
+      <stop stop-color="#14B8A6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#14B8A6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1018 210) rotate(90) scale(220 280)">
+      <stop stop-color="#FF8A30" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#FF8A30" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="173" y1="166" x2="457" y2="458" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14B8A6"/>
+      <stop offset="0.55" stop-color="#FF8A30"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient id="headline" x1="548" y1="198" x2="1126" y2="378" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.5" stop-color="#FF8A30"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" rx="40" fill="url(#bg)"/>
+  <rect x="26" y="26" width="1228" height="588" rx="28" stroke="#94A3B8" stroke-opacity="0.22"/>
+  <ellipse cx="296" cy="166" rx="250" ry="250" fill="url(#glowA)"/>
+  <ellipse cx="1018" cy="210" rx="220" ry="220" fill="url(#glowB)"/>
+  <g>
+    <rect x="116" y="146" width="352" height="352" rx="88" fill="#08111F" stroke="#94A3B8" stroke-opacity="0.22"/>
+    <circle cx="292" cy="322" r="98" fill="#08111F" stroke="url(#ring)" stroke-width="16"/>
+    <path d="M198 360C214 398 252 424 300 424C343 424 381 401 399 366" stroke="#14B8A6" stroke-width="13" stroke-linecap="round"/>
+    <path d="M389 278C373 242 334 216 286 216C246 216 209 236 191 269" stroke="#FF8A30" stroke-width="13" stroke-linecap="round"/>
+    <path d="M330 213L346 238L374 246L353 264L358 294L330 280L302 294L307 264L286 246L314 238L330 213Z" fill="#F8FAFC"/>
+    <circle cx="233" cy="236" r="10" fill="#14B8A6"/>
+    <circle cx="218" cy="304" r="6" fill="#F8FAFC" opacity="0.78"/>
+    <circle cx="400" cy="344" r="8" fill="#FF8A30"/>
+  </g>
+  <g>
+    <rect x="530" y="168" width="152" height="38" rx="19" fill="#14B8A6" fill-opacity="0.12" stroke="#14B8A6" stroke-opacity="0.4"/>
+    <text x="606" y="193" text-anchor="middle" fill="#99F6E4" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="18" font-weight="700" letter-spacing="1.8">CODEX SKILL</text>
+    <text x="530" y="284" fill="url(#headline)" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="62" font-weight="700">Codex Spark</text>
+    <text x="530" y="352" fill="url(#headline)" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="62" font-weight="700">Eclipse Legion</text>
+    <text x="530" y="418" fill="#CBD5E1" font-family="'IBM Plex Sans JP','Segoe UI',sans-serif" font-size="28" font-weight="500">Named Spark subagents. Explicit ownership.</text>
+    <text x="530" y="456" fill="#CBD5E1" font-family="'IBM Plex Sans JP','Segoe UI',sans-serif" font-size="28" font-weight="500">Selective waits. Clean teammate reports.</text>
+    <rect x="530" y="500" width="274" height="52" rx="26" fill="#FF8A30" fill-opacity="0.14" stroke="#FF9C4D" stroke-opacity="0.4"/>
+    <text x="667" y="534" text-anchor="middle" fill="#FED7AA" font-family="'Space Grotesk','Segoe UI',sans-serif" font-size="22" font-weight="700">gpt-5.3-codex-spark</text>
+  </g>
+</svg>
+

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --vp-c-brand-1: #ff8a30;
+  --vp-c-brand-2: #ff9c4d;
+  --vp-c-brand-3: #ffb273;
+  --vp-c-brand-soft: rgba(255, 138, 48, 0.18);
+  --vp-c-indigo-1: #14b8a6;
+  --vp-c-bg: #08111f;
+  --vp-c-bg-soft: #0f172a;
+  --vp-c-bg-alt: #0b1220;
+  --vp-c-divider: rgba(148, 163, 184, 0.24);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #f8fafc 20%, #ff8a30 52%, #14b8a6 100%);
+  --vp-home-hero-image-background-image:
+    radial-gradient(circle at 30% 30%, rgba(20, 184, 166, 0.32), transparent 48%),
+    radial-gradient(circle at 70% 45%, rgba(255, 138, 48, 0.28), transparent 44%);
+  --vp-home-hero-image-filter: blur(58px);
+  --vp-font-family-base: 'IBM Plex Sans JP', 'Space Grotesk', 'Segoe UI', sans-serif;
+  --vp-font-family-heading: 'Space Grotesk', 'IBM Plex Sans JP', 'Segoe UI', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.1), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 138, 48, 0.12), transparent 34%),
+    linear-gradient(180deg, #08111f 0%, #0b1220 100%);
+}
+
+.VPNavBar,
+.VPNavBar.has-sidebar .content-body {
+  backdrop-filter: blur(18px);
+  background: rgba(8, 17, 31, 0.78);
+}
+
+.VPFeature {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background:
+    linear-gradient(160deg, rgba(15, 23, 42, 0.88), rgba(9, 15, 27, 0.96)),
+    linear-gradient(135deg, rgba(255, 138, 48, 0.12), rgba(20, 184, 166, 0.08));
+  box-shadow: 0 18px 50px rgba(8, 15, 28, 0.22);
+}
+
+.VPFeature:hover {
+  border-color: rgba(255, 156, 77, 0.36);
+  transform: translateY(-2px);
+}
+
+.VPHero .image-container {
+  filter: drop-shadow(0 24px 60px rgba(8, 15, 28, 0.42));
+}
+
+.VPHero .name,
+.VPNavBarTitle .title,
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-family: var(--vp-font-family-heading);
+  letter-spacing: 0.01em;
+}
+
+.vp-doc a,
+.VPNavBarMenuLink.active,
+.VPSidebarItem.is-active > .item > .link > .text {
+  font-weight: 600;
+}
+
+.vp-doc div[class*='language-'] {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: 0 18px 40px rgba(8, 15, 28, 0.22);
+}
+
+.VPButton.brand {
+  box-shadow: 0 12px 30px rgba(255, 138, 48, 0.28);
+}
+
+.VPHomeHero .container,
+.VPDoc.has-aside .content-container {
+  position: relative;
+}
+
+.VPHomeHero .container::after {
+  content: '';
+  position: absolute;
+  inset: auto 10% -8% 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 138, 48, 0.48), transparent);
+}
+
+@media (max-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(40px);
+  }
+}
+
