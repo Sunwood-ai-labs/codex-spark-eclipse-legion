@@ -13,7 +13,7 @@ All subagent prompts should include:
 - Scope: exact in-scope work
 - Non-goals: explicit no-go items
 - Completion criteria: checklist for done status
-- QA inventory: output required for acceptance
+- QA inventory: output required for acceptance, with executed versus unverified items explicit
 
 ## State Flow (reference)
 
@@ -65,7 +65,7 @@ Requirements:
 2. Include {n} or more dated source URLs.
 3. Return:
    1) Findings for your slice
-   2) QA inventory with explicit criterion status (pass/fail/blocked)
+   2) QA inventory with explicit criterion status (pass/fail/blocked) and a short executed-check summary
    3) Proposed second-pass lane (`qa_verifier` or `peer_verifier`) and why
 4. Stop after the report. Do not suggest unrelated next steps.
 ```
@@ -97,6 +97,7 @@ Return:
 2. File references for the relevant locations
 3. QA inventory:
    - checks run (or why not run)
+   - which QA inventory items were actually executed
    - assumptions and risks
    - criterion-by-criterion status (pass/fail/blocked)
    - proposed second-pass lane (`qa_verifier` / `peer_verifier`) and owner
@@ -145,6 +146,7 @@ Your objective:
 3. flag consensus points that need evidence,
 4. escalate missing evidence with clear decision requests.
 You must return a separate QA inventory section:
+- QA inventory performed
 - risk level (low/medium/high)
 - missing evidence
 - owner
@@ -173,6 +175,7 @@ Validation:
    - `lane_type: qa_verifier`
    - `validator`
    - `second_pass_status` (`pass` / `fail` / `blocked`)
+   - QA inventory performed
    - evidence references (commands, files, checks)
    - open_risk and owner
 ```
@@ -196,6 +199,7 @@ Validation:
    - `lane_type: peer_verifier`
    - `validator`
    - `second_pass_status` (`pass` / `fail` / `blocked`)
+   - QA inventory performed
    - evidence references
    - open_risk and owner
 ```
@@ -217,7 +221,8 @@ Acceptance criteria:
 2. Run relevant checks if practical.
 3. Return the changed files, checks run, and unresolved risks.
 4. Return QA inventory with criterion status and unresolved risks.
-5. Propose second-pass lane (`qa_verifier` or `peer_verifier`) and preferred validator.
+5. Make it explicit which QA inventory items were actually executed.
+6. Propose second-pass lane (`qa_verifier` or `peer_verifier`) and preferred validator.
 ```
 
 ## Review swarm
@@ -234,6 +239,7 @@ Focus on {focus_area}.
 Return:
 1. Findings ordered by severity with file references.
 2. QA inventory:
+   - QA inventory performed
    - what was checked and evidence quality
    - what could not be validated
    - criterion status (pass/fail/blocked)

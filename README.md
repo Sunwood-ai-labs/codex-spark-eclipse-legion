@@ -126,6 +126,7 @@ QA inventory example:
 - Diff check: only intended files are touched and ownership boundaries are preserved.
 - Evidence check: returned notes include concrete checks, risks, and any unresolved items.
 - Responsibility check: strategy and final synthesis stay with the main agent.
+- Report check: final synthesis says which QA inventory items were actually performed, not only the final status labels.
 - Material Design check: user-facing changes either pass the Material Design review or explicitly return `not_applicable` with rationale.
 - Devil's Advocate check: assumptions lacking direct evidence are marked as blockers and returned with owner/action and disposition (`accepted`/`blocked`/`resolved`).
 - Per-subagent acceptance check: no item is marked done until both
@@ -143,6 +144,7 @@ QA inventory example:
 - Dramatic but readable teammate names and epithets
 - Explicit ownership for each delegated slice
 - A mandatory Material Design Designer seat for user-facing system review
+- Final reports that state which QA inventory was actually executed
 - Selective waiting instead of reflexively blocking on every agent
 - Short final reports that explain who owned what and what came back
 - Recovery guidance for thread limits, timeouts, and interrupted runs

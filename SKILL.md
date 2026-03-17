@@ -14,7 +14,7 @@ Default to the model slug `gpt-5.3-codex-spark`. Favor fast, bounded delegation 
 When you use this skill, you are the manager by default and should keep orchestration and final synthesis tight. Subagents are operators with bounded execution authority.
 
 - Main agent duty: define boundaries, coordinate dependencies, integrate outputs, and finalize decisions.
-- Subagent duty: execute only the scoped slice, keep to non-goals, and report results with QA inventory.
+- Subagent duty: execute only the scoped slice, keep to non-goals, and report results with QA inventory plus executed-check evidence.
 - Treat every subagent as a `junior teammate` who needs explicit instructions and a checklist.
 
 ## Unified Orchestration Model
@@ -127,7 +127,7 @@ Avoid names that are so long they make prompts noisy.
 5. While running, do non-overlapping local work.
 6. Wait only when the next local step requires returned results.
 7. Close completed agents so you do not hit thread limits.
-8. In final response, report names/epithets, scope, outcomes, and QA status.
+8. In final response, report names/epithets, scope, outcomes, QA inventory performed, and QA status.
 
 ## Prompt Rules
 
@@ -198,7 +198,8 @@ Final response should include:
 
 - Which subagents ran and their roles
 - Exact ownership and returned findings
-- QA inventory from each output
+- QA inventory from each output, including what was actually executed versus left unverified
+- A compact executed-check summary for each teammate or lane
 - Final `manager_acceptance`, `second_pass_status`, `material_design_status`, and Devil `disposition`
 - Evidence list and unresolved risks with owners
 - What was retried/not finished
@@ -211,6 +212,11 @@ In multi-subagent plans, final output is complete only when:
 - Devil's Advocate `disposition` is recorded.
 
 Short example format remains team-wise with outcome summaries and risk statements.
+When space is tight, prefer one compact line per teammate that still includes:
+
+- owned scope
+- QA inventory performed (for example `uv run pytest`, `npm run docs:build`, smoke run, manual check)
+- final acceptance status
 
 ## References
 

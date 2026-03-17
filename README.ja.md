@@ -110,6 +110,7 @@ npm run docs:build
 - Material Design 特化デザイナーを必須席として固定し、UI 影響のある成果物の監査結果を `material_design_status` で回収する
 - 悪魔の代弁者を各分割運用の必須ロールとして明記し、最終統合時の反証監査（`devil_audit`）を実施する  
 - `second_pass` は実装結果の成果物単位で `qa_verifier` / `peer_verifier` を基本とする（implementation-critical は悪魔の代弁者や Material Design 特化デザイナーで代替しない）
+- 最終レポートで、どの QA インベントリを実際に実行したかを teammate ごとに短く明記する
 - 悪魔の代弁者は、ファイル数の増減を見て fan-out が負荷を超える場合は、並列数を減らすか実行を止める判断材料を返す
 - 毎回むやみに待たない、選択的な `wait`
 - 誰が何を担当したか分かる短い最終報告

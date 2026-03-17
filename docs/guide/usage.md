@@ -107,6 +107,7 @@ Devil's Advocate handoff input:
 - Per-subagent acceptance checks: each producing subagent output is accepted only after both the main orchestrator and the QA verifier lane sign off.
 - Final synthesis check: confirm the final synthesis references the per-subagent acceptance results and the final `material_design_status`.
 - Final `final_accept` condition: every producing subagent has `manager_acceptance=accepted && second_pass_status=pass`, and `material_design_status` is `pass` or `not_applicable`; otherwise synthesis remains blocked regardless of Devil's Advocate disposition.
+- Reporting check: the final answer names which QA inventory items were actually executed, with concrete outcomes.
 
 ## Completion criteria for subagent outputs
 
@@ -119,11 +120,24 @@ The final answer should make it obvious:
 - which Spark subagents ran
 - what each one owned
 - what each one returned
+- which QA inventory items were actually executed, by whom, and with what outcome
 - which QA inventory items passed, failed, or stayed blocked
 - which checks or sources backed the result
 - what failed, retried, or stayed unfinished
 - whether the Material Design Designer returned `pass`, `requires adjustment`, or `not_applicable`
 - whether the Devil's Advocate escalated assumptions or missing evidence for the manager
+
+Short report snippet example:
+
+```text
+Regulus / Runtime Pathkeeper: cross-platform runtime packaging
+QA inventory performed: `uv run pytest` (18 passed), `uv run python -m compileall src` (pass), runtime smoke launch (pass)
+Status: manager_acceptance = accepted, second_pass_status = pass
+
+Vesper / Buildway Forger: build flow and CI
+QA inventory performed: `uv sync --group build` (pass), `uv run python scripts/build_desktop.py --artifact-suffix runtime-smoke` (pass)
+Status: manager_acceptance = accepted, second_pass_status = pass
+```
 
 Devil's Advocate return format:
 
