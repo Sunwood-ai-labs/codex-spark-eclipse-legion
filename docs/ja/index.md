@@ -23,12 +23,14 @@ features:
     details: 各 Spark エージェントに短いコードネームと異名を与え、最終報告を読みやすく印象的に保ちます。
   - title: 衝突しにくい責務分離
     details: 作業を 2-4 本の独立スライスに分け、クリティカルパスはローカルで持ち、横で進められる範囲だけ委譲します。
+  - title: 必須のデザイン監査と反証監査
+    details: 同じロスター内に Material Design 特化デザイナーと悪魔の代弁者を固定し、UI ドリフトと統合リスクを毎回監査します。
   - title: 落ち着いたリカバリー
     details: スレッド上限、wait のタイムアウト、中断、モデル名の見えにくさに対しても復旧方針を用意します。
   - title: 管理と実働の分離
-    details: 主担当は方針・最終判断、サブエージェントは実装・調査・一次レビューを担当し、悪魔の代弁者は `manager_synthesis_draft` の `devil_audit` を担当します。
+    details: 主担当は方針・最終判断、サブエージェントは実装・調査・一次レビューを担当し、Material Design 特化デザイナーと悪魔の代弁者はそれぞれ専用監査を担当します。
   - title: 二重確認の分離
-    details: 成果物単位の `second_pass` は `qa_verifier` / `peer_verifier` が担い、悪魔の代弁者は全体監査として `disposition` を返します。
+    details: 成果物単位の `second_pass` は `qa_verifier` / `peer_verifier` が担い、Material Design 特化デザイナーは `material_design_status`、悪魔の代弁者は `disposition` を返します。
 ---
 
 ## このリポジトリの役割
@@ -39,13 +41,13 @@ features:
 
 ![Codex Spark Eclipse Legion フロー構成図](/legion-orchestration-flow.drawio.svg)
 
-左の必須ロール、中央の必須フロー、右の fan-out 縮退条件、下の status / report contract を一画面で確認できます。
+左の必須ロール、中央の必須フロー、右の fan-out 縮退条件、下の status / report contract を一画面で確認できます。Material Design 特化デザイナーと悪魔の代弁者もこの図に含まれます。
 
 ## 運用方針
 
 時系列は `producer_done -> manager_acceptance -> second_pass -> manager_synthesis_draft -> devil_audit -> final_accept` です。  
 `second_pass` は各成果物単位の二重確認、`devil_audit` は最終統合時の全体反証監査です。  
-`manager_acceptance=accepted && second_pass_status=pass` が先に満たされ、加えて `disposition` の未解決リスクが解消されるときに最終採用します。
+`manager_acceptance=accepted && second_pass_status=pass` が先に満たされ、`material_design_status=pass|not_applicable` を確認し、加えて `disposition` の未解決リスクが解消されるときに最終採用します。
 
 ## 次に読む場所
 

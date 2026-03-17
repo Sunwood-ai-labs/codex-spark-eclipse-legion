@@ -29,13 +29,22 @@ Codex Spark Eclipse Legion は、1 人では足りないが大規模オーケス
   - 役割: 成果物が管理側で次工程に進める品質かを判定する。
 - `second_pass_status`: 成果物単位で `qa_verifier` / `peer_verifier` が出す二重確認結果（`pass / fail / blocked`）。  
   - 役割: 主担当受領後に独立ルートで成果物を再検証する。
+- `material_design_status`: 必須の Material Design 特化デザイナーが返すデザイン監査結果（`pass / requires adjustment / not_applicable / blocked`）。  
+  - 役割: UI 影響のある成果物に対して、Material Design 観点の整合とアクセシビリティを確認する。
 - `disposition`: 悪魔の代弁者が全体統合監査で管理するリスク処理状態（`accepted / blocked / resolved`）。  
   - 役割: `manager_acceptance` / `second_pass_status` では見えにくい横断リスクを整理する補助軸。
 
-2～4 体のサブエージェントを編成する場合、総サブエージェント枠のうち 1 体を必ず「悪魔の代弁者」として固定します。これは常設の必須ロールで、追加枠ではありません。
-2 名運用でも同様です。総実働帯域が不足し、上記二重確認と悪魔監査を同時に維持できないなら、fan-out を縮小するか、実行を止めます。
-実装クリティカルな成果物の `second_pass` は、原則として `qa_verifier` / `peer_verifier` が担当し、悪魔の代弁者で代替しません。  
-悪魔の代弁者は二段構えの一方を担うのではなく、`manager_synthesis_draft` に対する全体統合時の反証監査を担当します。
+2～4 体のサブエージェントを編成する場合、総サブエージェント枠のうち 2 枠を必ず「悪魔の代弁者」と「Material Design 特化デザイナー」として固定します。どちらも常設の必須ロールで、追加枠ではありません。
+総実働帯域が不足し、上記二重確認・デザイン監査・悪魔監査を同時に維持できないなら、fan-out を縮小するか、実行を止めます。
+両ロールが必須になるため、実務上の producer は 1～2 体を上限目安にし、`peer_verifier` を共有できるかを先に確認します。
+実装クリティカルな成果物の `second_pass` は、原則として `qa_verifier` / `peer_verifier` が担当し、悪魔の代弁者や Material Design 特化デザイナーで代替しません。  
+Material Design 特化デザイナーは、producer 返却後に `material_design_status` を返す専用デザイン監査を担当し、悪魔の代弁者は `manager_synthesis_draft` に対する全体統合時の反証監査を担当します。
+
+Material Design 特化デザイナーも追加枠ではなく、同じ総サブエージェント枠の中に置く専用ロールです。必須の限定責務は次のとおりです。  
+- UI 影響のある成果物について、Material Design のコンポーネント適合、階層、余白、状態、テーマ、モーション、アクセシビリティを監査すること  
+- `material_design_status`、コンポーネント指針、required action を主担当へ返すこと  
+- ユーザー向けの UI 変更がない場合は、`material_design_status = not_applicable` を理由付きで返すこと  
+- `qa_verifier` / `peer_verifier` や悪魔の代弁者の代役にならないこと
 
 悪魔の代弁者は追加枠ではなく、同じ総サブエージェント枠の中に置く専用監査ロールです。必須の限定責務は次のとおりです。  
 - 他ロールの返却物と主担当の統合方針案に対して、仮説の妥当性・根拠不足・横断回帰を監査すること  
@@ -48,7 +57,7 @@ Codex Spark Eclipse Legion は、1 人では足りないが大規模オーケス
 - `required action`: 追跡調査・再検証・判断保留の要求  
 - `disposition`: `accepted` / `blocked` / `resolved`
 
-最終統合の判断は `manager_acceptance=accepted && second_pass_status=pass` が成立してから行い、さらに悪魔の代弁者の `disposition` が `blocked` ではなく、残余リスクが明示的に処理されていることを確認して成立します。
+最終統合の判断は `manager_acceptance=accepted && second_pass_status=pass` が成立し、さらに `material_design_status=pass|not_applicable` を満たしたうえで、悪魔の代弁者の `disposition` が `blocked` ではなく、残余リスクが明示的に処理されていることを確認して成立します。
 
 このリポジトリには、公開向けの導線として次を用意しています。
 
@@ -98,8 +107,9 @@ npm run docs:build
 - 覚えやすく雰囲気のあるチームメイト名と異名
 - 各サブエージェントの明確な所有範囲と、サブエージェント側でやらないこと（非目標）
 - 各サブエージェントへ、主担当側の完成基準（完了条件）と検証観点（QA インベントリ）を渡す
+- Material Design 特化デザイナーを必須席として固定し、UI 影響のある成果物の監査結果を `material_design_status` で回収する
 - 悪魔の代弁者を各分割運用の必須ロールとして明記し、最終統合時の反証監査（`devil_audit`）を実施する  
-- `second_pass` は実装結果の成果物単位で `qa_verifier` / `peer_verifier` を基本とする（implementation-critical は悪魔の代弁者で代替しない）
+- `second_pass` は実装結果の成果物単位で `qa_verifier` / `peer_verifier` を基本とする（implementation-critical は悪魔の代弁者や Material Design 特化デザイナーで代替しない）
 - 悪魔の代弁者は、ファイル数の増減を見て fan-out が負荷を超える場合は、並列数を減らすか実行を止める判断材料を返す
 - 毎回むやみに待たない、選択的な `wait`
 - 誰が何を担当したか分かる短い最終報告

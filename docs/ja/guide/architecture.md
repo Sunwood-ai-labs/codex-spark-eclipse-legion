@@ -14,7 +14,7 @@
 
 ## ドキュメント設計
 
-管理役（主担当）と実働役（subagent）の役割分担を明確にし、成果物単位の二重確認と全体統合監査を分離します。  
+管理役（主担当）と実働役（subagent）の役割分担を明確にし、成果物単位の二重確認と全体統合監査を分離します。多人数運用では、Material Design 特化デザイナーと悪魔の代弁者も固定席として同じロスター内に収めます。  
 時系列は `producer_done -> manager_acceptance -> second_pass -> manager_synthesis_draft -> devil_audit -> final_accept` です。  
 `second_pass` が各成果物の二重確認、`devil_audit` が全体統合時の反証監査です。
 
@@ -28,7 +28,7 @@
 
 ![Codex Spark Eclipse Legion フロー構成図](/legion-orchestration-flow.drawio.svg)
 
-この再利用用アセットは、`SKILL.md` の運用モデルを図として固定したものです。ロール分担、正規フロー、fan-out 縮退条件、報告契約を 1 枚で参照でき、編集元は `docs/public/legion-orchestration-flow.drawio` にあります。
+この再利用用アセットは、`SKILL.md` の運用モデルを図として固定したものです。Material Design 特化デザイナーと悪魔の代弁者を含むロール分担、正規フロー、fan-out 縮退条件、報告契約を 1 枚で参照でき、編集元は `docs/public/legion-orchestration-flow.drawio` にあります。
 
 VitePress サイトは、利用者が最初に必要とする順番に合わせています。
 

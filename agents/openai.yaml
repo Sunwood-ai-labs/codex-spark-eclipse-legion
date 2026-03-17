@@ -1,4 +1,4 @@
 interface:
   display_name: "Codex Spark Eclipse Legion"
-  short_description: "Summon named Spark agents and fan tasks out in parallel"
-  default_prompt: "Use $codex-spark-eclipse-legion to summon named GPT-5.3-Codex-Spark subagents with dramatic aliases, clear ownership, and teammate-by-teammate reporting."
+  short_description: "Summon named Spark agents with mandatory Devil's Advocate and Material Design seats"
+  default_prompt: "Use $codex-spark-eclipse-legion to summon named GPT-5.3-Codex-Spark subagents with dramatic aliases, clear ownership, a mandatory Devil's Advocate, a mandatory Material Design designer, and teammate-by-teammate reporting."

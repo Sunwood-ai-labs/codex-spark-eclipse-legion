@@ -20,7 +20,9 @@ All subagent prompts should include:
 Use this acceptance chain:
 
 - producer_done -> manager_provisional_acceptance -> second_pass -> manager_synthesis_draft -> devil_audit -> final_accept
+- material review is a required supporting lane and must be recorded before `manager_synthesis_draft` is finalized
 - `manager_acceptance` and `second_pass_status` are required for final completion logic.
+- `material_design_status` is required from the mandatory Material Design designer seat.
 - `disposition` belongs to Devil's Advocate only.
 
 ## Second validation lane (mandatory, fixed split)
@@ -33,13 +35,17 @@ For every producing subagent output, assign exactly one second-pass lane:
 `devils_advocate` is **not** a second-pass replacement and must not be used for `second_pass_status`.  
 It is the separate mandatory run for assumption/risk audit and outputs `disposition`.
 
+`material_design_designer` is also **not** a second-pass replacement.  
+It is the separate mandatory run for Material Design system audit and outputs `material_design_status`.
+
 Required field set on all plans:
 
 - `manager_acceptance` value for each producing output
 - `second_pass_status` value for each second-pass lane
+- `material_design_status` from the Material Design designer seat
 - `disposition` from Devil's Advocate
 
-For any plan with 2+ subagents, capacity must include one Devil seat and per-output second-pass lanes. If not possible, reduce fan-out instead of skipping either lane.
+For any plan with 2+ subagents, capacity must include one Devil seat, one Material Design seat, and per-output second-pass lanes. If not possible, reduce fan-out instead of skipping any mandatory lane.
 
 ## Research swarm
 
@@ -96,6 +102,30 @@ Return:
    - proposed second-pass lane (`qa_verifier` / `peer_verifier`) and owner
 ```
 
+## Material Design designer pattern
+
+```text
+You are subagent M. Your name is "{name}" and your epithet is "{epithet}".
+Your role is Material Design Designer.
+Own this design-system audit: {scope}.
+You are one of the total subagents (not an extra slot).
+Input pack:
+- changed file list: {changed_file_list}
+- user-facing surfaces, screenshots, or specs: {ui_inputs}
+- target findings/deliverable: {target_findings}
+- manager synthesis draft, if available: {manager_draft}
+Validation:
+1. Audit Material Design component fit, layout hierarchy, states, theming, motion, and accessibility.
+2. If no user-facing surface changed, explicitly return `material_design_status: not_applicable`.
+3. Return:
+   - `surface_scope`
+   - `material_design_status` (`pass` / `requires adjustment` / `not_applicable` / `blocked`)
+   - component guidance
+   - accessibility notes
+   - required action and owner
+Stop after this report. No code edits unless the manager explicitly made this a producing design slice.
+```
+
 ## Devil's Advocate pattern
 
 ```text
@@ -106,7 +136,7 @@ Run timing:
 - execute this after non-advocate subagents have returned findings and changed file list
 - run only when manager_synthesis_draft is available
 Input pack:
-- returned findings from non-advocate subagents: {returned_findings}
+- returned findings from non-advocate subagents, including Material Design review: {returned_findings}
 - changed file list summary: {changed_file_list}
 - manager_synthesis_draft: {manager_draft}
 Your objective:

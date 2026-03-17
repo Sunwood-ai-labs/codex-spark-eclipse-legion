@@ -18,12 +18,16 @@ This repository is optimized for a manager-led workflow:
 - The main agent owns intent, acceptance criteria, risk decisions, and final synthesis.
 - Subagents are junior teammates who need explicit direction, so prompts should include concrete scope, explicit non-goals, and explicit finish conditions.
 - The main agent should remain ready to make the final call when outputs conflict or assumptions are invalid.
-- For every multi-subagent run (two or more), allocate a fixed Devil's Advocate role from that same roster.
-- If the Devil's Advocate role cannot be staffed, reduce fan-out instead of expanding scope.
+- For every multi-subagent run (two or more), allocate fixed Devil's Advocate and Material Design Designer roles from that same roster.
+- If either mandatory role cannot be staffed, reduce fan-out instead of expanding scope.
+- Because both seats are mandatory, most runs should cap at 1-2 producing subagents unless peer verification can be shared safely.
 - Every producing subagent must also run a separate second validation lane: `qa_verifier` or `peer_verifier` (never replaced by Devil's Advocate).
+- The Material Design Designer is also not a second-pass replacement; they return `material_design_status` plus design guidance for user-facing work, or `not_applicable` when no UI surface changed.
 - `manager_acceptance` and `second_pass_status` are per producer, and both must be positive (`accepted` and `pass`) before final inclusion.
+- `material_design_status` is run-wide and must be `pass` or `not_applicable` before final synthesis closes.
 - Required flow:
   - `producer_done -> manager provisional acceptance -> second_pass -> manager synthesis draft -> devil_audit -> final_accept`
+- Material Design review is a required supporting lane between producer return and final synthesis, even though it does not replace a canonical state in that chain.
 - If implementation-critical outputs cannot support this sequence, reduce fan-out or skip fan-out.
 
 ## Prompt design rules
@@ -37,9 +41,17 @@ Every delegated prompt should include:
 - verification expectations, especially links or changed files when relevant
 - a non-goal list to prevent drift
 - if two or more subagents are used, a dedicated Devil's Advocate assignment and escalation policy
+- if two or more subagents are used, a dedicated Material Design Designer assignment or an explicit `no user-facing surface` check
 - if per-subagent QA verification is needed, explicitly designate a QA verifier (or peer-check) lane and scope
 - reserve seat: before fan-out
 - run order: producer_done -> manager provisional acceptance -> second_pass -> manager synthesis draft -> devil_audit
+
+A Material Design Designer output is operationally mandatory.
+They audit only:
+- user-facing surfaces
+- component/system consistency
+- interaction states, spacing, hierarchy, and accessibility
+They must return `material_design_status`, component guidance, accessibility notes, and required action, or explicitly mark `not_applicable`.
 
 A Devil's Advocate output is operationally mandatory and is treated like a separate QA lane.
 They audit only:
@@ -50,11 +62,13 @@ They must challenge assumptions and missing evidence in those inputs, check for 
 
 The QA verifier lane is distinct:
 - it validates each producing subagent output on objective criteria,
+- the Material Design Designer validates user-facing design-system fit and accessibility expectations,
 - the Devil's Advocate validates cross-cutting synthesis assumptions, regressions, and evidence sufficiency.
 
 Status definitions:
 - `manager_acceptance`: provisional manager decision on each producer output.
 - `second_pass_status`: result from assigned `qa_verifier` / `peer_verifier` (`pass`/`fail`).
+- `material_design_status`: result from the mandatory Material Design review (`pass` / `requires adjustment` / `not_applicable` / `blocked`).
 - `disposition`: Devil's Advocate outcome of risk treatment (`accepted` / `blocked` / `resolved`), not the same as second-pass grading.
 
 ## Delegation package
@@ -66,6 +80,7 @@ Before assigning a subagent, define:
 - Completion definition: specific files, artifacts, and response style expected.
 - QA inventory: checks the subagent must perform and report.
 - Handoff boundaries: who decides if unresolved risks are acceptable.
+- Material Design lane: how UI impact will be audited, or how `not_applicable` will be justified.
 - QA inventory for double-check:
   - assign a second verifier (or lane),
   - define the exact commands/checks that verifier will run,
@@ -73,10 +88,12 @@ Before assigning a subagent, define:
 
 Acceptance rule:
 - a producer reaches completion only when `manager_acceptance=accepted` and `second_pass_status=pass`.
+- the overall run reaches completion only when `material_design_status=pass|not_applicable` as well.
 
 Devil's Advocate handoff input:
 - returned findings
 - changed file list
+- Material Design review result
 - manager synthesis draft
 
 ### Example of a concrete QA inventory
@@ -85,10 +102,11 @@ Devil's Advocate handoff input:
 - Ownership checks: confirm only files in the assigned scope were edited.
 - Evidence checks: attach changed paths plus the command outputs used to validate them.
 - Governance checks: note any decision point that should be escalated to the main agent.
+- Material Design checks: confirm whether user-facing changes pass Material review or explicitly document `not_applicable`.
 - Risk checks: explicitly call out blockers, retries, or assumptions.
 - Per-subagent acceptance checks: each producing subagent output is accepted only after both the main orchestrator and the QA verifier lane sign off.
-- Final synthesis check: confirm the final synthesis references the per-subagent acceptance results.
-- Final `final_accept` condition: every producing subagent has `manager_acceptance=accepted && second_pass_status=pass`; otherwise synthesis remains blocked regardless of Devil's Advocate disposition.
+- Final synthesis check: confirm the final synthesis references the per-subagent acceptance results and the final `material_design_status`.
+- Final `final_accept` condition: every producing subagent has `manager_acceptance=accepted && second_pass_status=pass`, and `material_design_status` is `pass` or `not_applicable`; otherwise synthesis remains blocked regardless of Devil's Advocate disposition.
 
 ## Completion criteria for subagent outputs
 
@@ -104,6 +122,7 @@ The final answer should make it obvious:
 - which QA inventory items passed, failed, or stayed blocked
 - which checks or sources backed the result
 - what failed, retried, or stayed unfinished
+- whether the Material Design Designer returned `pass`, `requires adjustment`, or `not_applicable`
 - whether the Devil's Advocate escalated assumptions or missing evidence for the manager
 
 Devil's Advocate return format:
@@ -118,9 +137,9 @@ Devil's Advocate return format:
 
 ```text
 Use $codex-spark-eclipse-legion.
-- subagent 1: docs drift review
-- subagent 2: qa_verifier (docs build verification)
-- subagent 3: release-note impact scan
+- subagent 1: docs drift review (producer; peer-verifies subagent 2)
+- subagent 2: docs example consistency scan (producer; peer-verifies subagent 1)
+- subagent 3: Material Design Designer (user-facing docs/UI audit; return `material_design_status`)
 - subagent 4: Devil's Advocate (cross-slice regression and evidence gap audit)
 
 Scope:
@@ -128,19 +147,20 @@ Scope:
 - Do not edit `README.ja.md`, `SKILL.md`, or `references/`.
 
 Run order:
-- reserve Devil's Advocate (subagent 4) before starting fan-out
-- run producers (subagent 1, 3) and record:
+- reserve Material Design Designer (subagent 3) and Devil's Advocate (subagent 4) before starting fan-out
+- run producers (subagent 1, 2) and record:
   - producer_done
   - manager provisional acceptance (`accepted` / `blocked`)
-- run second-pass lane (subagent 2) against each producer and record `second_pass_status`
+- run peer-verification lanes between subagent 1 and subagent 2 and record `second_pass_status`
+- run Material Design review (subagent 3) and record `material_design_status`
 - manager synthesis draft:
-  - draft synthesis based on returned findings and changed file list
+  - draft synthesis based on returned findings, changed file list, and Material Design review
 - devil_audit:
   - run against returned findings + file list + manager draft
-- final_accept only if every producer has `manager_acceptance=accepted` and `second_pass_status=pass`.
+- final_accept only if every producer has `manager_acceptance=accepted` and `second_pass_status=pass`, and `material_design_status` is `pass` or `not_applicable`.
 
 Finish line:
-- Return changed file list and a short rationale.
+- Return findings or suggested edits plus a short rationale.
 - Provide three QA checks + evidence.
 Keep the overall synthesis and decision local.
 ```

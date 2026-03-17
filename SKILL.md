@@ -1,6 +1,6 @@
 ---
 name: codex-spark-eclipse-legion
-description: Summon native Codex subagents with the `gpt-5.3-codex-spark` model as a named legion with chuunibyou-style aliases, explicit ownership, minimal context, selective waits, and teammate-by-teammate reporting. Use when the user asks for Spark subagents, wants aggressive fan-out across 2-4 independent workstreams, or wants dramatic teammate names plus a clear report of who did what.
+description: Summon native Codex subagents with the `gpt-5.3-codex-spark` model as a named legion with chuunibyou-style aliases, explicit ownership, mandatory Devil's Advocate and Material Design designer seats, minimal context, selective waits, and teammate-by-teammate reporting. Use when the user asks for Spark subagents, wants aggressive fan-out across 2-4 independent workstreams, or wants dramatic teammate names plus a clear report of who did what.
 ---
 
 # Codex Spark Eclipse Legion
@@ -27,20 +27,48 @@ State vocabulary is fixed:
 
 - `manager_acceptance`: status of each producing output (`accepted`, `requires adjustment`, `blocked`)
 - `second_pass_status`: status of each producing output second validation (`pass`, `fail`, `blocked`)
+- `material_design_status`: status of the mandatory Material Design review (`pass`, `requires adjustment`, `not_applicable`, `blocked`)
 - `disposition`: Devil's Advocate result (`accepted`, `blocked`, `resolved`)
 
 Final completion condition:
 
-- `manager_acceptance = accepted` **and** `second_pass_status = pass`
+- every producing output has `manager_acceptance = accepted`
+- every producing output has `second_pass_status = pass`
+- `material_design_status = pass` or `not_applicable`
 
 ## Required Seats and Capacity
 
-For any plan with two or more subagents, both are required:
+For any plan with two or more subagents, all are required:
 
 - one dedicated Devil's Advocate seat for the entire run,
+- one dedicated Material Design Designer seat for the entire run,
 - one second-pass lane for each producing subagent output.
 
 If required capacity cannot be ensured, do not fan-out; reduce scope and rerun with fewer agents.
+Because both fixed seats consume roster capacity, most runs should cap at 1-2 producing subagents unless second-pass can be handled by peer verification without collisions.
+
+## Material Design Seat Rules
+
+`material_design_designer` is a mandatory design-system audit lane for any multi-subagent plan. It is distinct from both `qa_verifier` / `peer_verifier` and `devils_advocate`.
+
+Responsibilities:
+
+- audit user-facing surfaces, interaction states, hierarchy, spacing, theming, and accessibility against Material Design expectations
+- return concrete component guidance and required follow-up for UI-affecting work
+- if no user-facing surface changed, explicitly return `material_design_status = not_applicable` with a short rationale
+
+It is not:
+
+- a second-pass replacement
+- a Devil's Advocate replacement
+- the final decision-maker on product tradeoffs
+
+Run timing:
+
+- reserve the seat before fan-out
+- execute after producer outputs are available
+- record `material_design_status` before the manager finalizes `manager_synthesis_draft`
+- treat it as a required supporting lane, not a replacement for the canonical state chain
 
 ## Second-Validation Lane Rules
 
@@ -49,17 +77,20 @@ Second-pass is one of:
 - `qa_verifier`: reproducible checks with commands/files/tests.
 - `peer_verifier`: independent confirmation from a disjoint ownership slice.
 
-`devils_advocate` is not a second-pass replacement. It is an assumption/risk audit lane used in `devil_audit` and only produces `disposition` and escalation actions.
+`devils_advocate` and `material_design_designer` are not second-pass replacements.
+The former is an assumption/risk audit lane used in `devil_audit` and only produces `disposition` and escalation actions.
+The latter is a design-system audit lane that produces `material_design_status`, component guidance, accessibility notes, and required actions.
 
 Run order:
 
-1. Reserve Devil's Advocate seat + per-output second-pass assignments before fan-out.
+1. Reserve Devil's Advocate seat + Material Design Designer seat + per-output second-pass assignments before fan-out.
 2. Run producing and supporting subagents.
 3. On return, set `manager_provisional_acceptance` as `manager_acceptance` (`accepted`/`requires adjustment`/`blocked`).
 4. Run second-pass (`qa_verifier` or `peer_verifier`) for each producing output and record `second_pass_status`.
-5. Draft manager synthesis and provide to Devil's Advocate.
-6. Run Devil's Advocate audit and record `disposition`.
-7. Finalize only when completion condition holds.
+5. Run Material Design review and record `material_design_status`.
+6. Draft manager synthesis and provide to Devil's Advocate.
+7. Run Devil's Advocate audit and record `disposition`.
+8. Finalize only when completion condition holds.
 
 ## Use This Skill When
 
@@ -89,7 +120,8 @@ Avoid names that are so long they make prompts noisy.
 
 1. Keep the immediate blocking step local. Delegate sidecar work, not the entire critical path.
 2. Split the task into 2-4 disjoint scopes with concrete acceptance criteria.
-   - Split only when the required Devil seat and required second-pass slots are guaranteed.
+   - Split only when the required Devil seat, required Material Design seat, and required second-pass slots are guaranteed.
+   - With both fixed seats present, practical producer capacity is usually 1-2 subagents.
 3. Set `model: "gpt-5.3-codex-spark"` explicitly for every subagent.
 4. Spawn in parallel with `multi_tool_use.parallel`.
 5. While running, do non-overlapping local work.
@@ -106,12 +138,13 @@ Every delegated prompt should include:
 - Exact scope and non-goals
 - Finish line and completion criteria checklist
 - A second-pass assignment for producing outputs (`qa_verifier` or `peer_verifier`)
+- A Material Design review assignment, or an explicit `no user-facing surface` check
 - Verification rules:
   - web tasks: dated sources and links
   - code tasks: changed files and non-goal boundaries
 - A QA inventory requirement and acceptance checks
 
-For any plan with two or more subagents, include the required Devil seat, second-pass plan, and expected `manager_acceptance` / `second_pass_status` handling.
+For any plan with two or more subagents, include the required Devil seat, required Material Design seat, second-pass plan, and expected `manager_acceptance` / `second_pass_status` / `material_design_status` handling.
 
 QA inventory (required per subagent):
 
@@ -122,7 +155,8 @@ QA inventory (required per subagent):
 5. Criterion status (`pass` / `fail` / `blocked`) for each item.
 6. `manager_acceptance` plus rationale.
 7. `second_pass_status` with lane (`qa_verifier` or `peer_verifier`) and evidence.
-8. For Devil's Advocate: `risk level`, `missing evidence`, `owner`, `required action`, `disposition`.
+8. For Material Design Designer: `surface_scope`, `material_design_status`, `component guidance`, `accessibility notes`, `required action`.
+9. For Devil's Advocate: `risk level`, `missing evidence`, `owner`, `required action`, `disposition`.
 
 Use templates in [references/prompt-patterns.md](./references/prompt-patterns.md).
 
@@ -146,6 +180,7 @@ Use templates in [references/prompt-patterns.md](./references/prompt-patterns.md
 ### Review or QA swarm
 
 - Separate correctness/tests/risk reviews by owner.
+- Route user-facing system and component review to the Material Design designer seat.
 - Synthesize findings locally to one coherent answer.
 
 ## Failure Handling
@@ -164,14 +199,15 @@ Final response should include:
 - Which subagents ran and their roles
 - Exact ownership and returned findings
 - QA inventory from each output
-- Final `manager_acceptance`, `second_pass_status`, and Devil `disposition`
+- Final `manager_acceptance`, `second_pass_status`, `material_design_status`, and Devil `disposition`
 - Evidence list and unresolved risks with owners
 - What was retried/not finished
 
 In multi-subagent plans, final output is complete only when:
 
-- `manager_acceptance = accepted`
+- every producing output has `manager_acceptance = accepted`
 - every producing output has `second_pass_status = pass`
+- `material_design_status = pass` or `not_applicable`
 - Devil's Advocate `disposition` is recorded.
 
 Short example format remains team-wise with outcome summaries and risk statements.

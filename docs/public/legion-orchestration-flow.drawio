@@ -36,10 +36,10 @@
         </mxCell>
 
         <mxCell id="panel-roles" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#0F1726;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#94A3B8;strokeOpacity=28;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="110" y="340" width="290" height="440" as="geometry"/>
+          <mxGeometry x="110" y="340" width="290" height="520" as="geometry"/>
         </mxCell>
         <mxCell id="panel-risks" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#101827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#94A3B8;strokeOpacity=28;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="1390" y="340" width="290" height="440" as="geometry"/>
+          <mxGeometry x="1390" y="340" width="290" height="520" as="geometry"/>
         </mxCell>
         <mxCell id="panel-bottom" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#0F1726;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#94A3B8;strokeOpacity=28;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="110" y="930" width="1570" height="160" as="geometry"/>
@@ -60,24 +60,30 @@
         <mxCell id="roles-devil" value="&lt;b&gt;Devil's Advocate&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;cross-slice risk audit only&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
           <mxGeometry x="135" y="672" width="240" height="80" as="geometry"/>
         </mxCell>
+        <mxCell id="roles-material" value="&lt;b&gt;Material Design Designer&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;mandatory UI system audit&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#38BDF8;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
+          <mxGeometry x="135" y="758" width="240" height="80" as="geometry"/>
+        </mxCell>
 
         <mxCell id="risks-title" value="REDUCE FAN-OUT" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#FF8A30;fillOpacity=12;strokeColor=#FF9C4D;strokeOpacity=45;strokeWidth=1.2;align=center;verticalAlign=middle;fontSize=15;fontStyle=1;fontFamily=Space Grotesk;fontColor=#FED7AA;" vertex="1" parent="1">
           <mxGeometry x="1425" y="358" width="220" height="34" as="geometry"/>
         </mxCell>
         <mxCell id="risk-1" value="&lt;b&gt;Devil seat unavailable&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;fan-out せず、scope を縮める&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeOpacity=60;strokeWidth=1.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=14;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="1415" y="414" width="240" height="76" as="geometry"/>
+          <mxGeometry x="1415" y="414" width="240" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="risk-material" value="&lt;b&gt;Material seat unavailable&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;reduce fan-out or stop run&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#38BDF8;strokeOpacity=60;strokeWidth=1.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=14;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
+          <mxGeometry x="1415" y="490" width="240" height="68" as="geometry"/>
         </mxCell>
         <mxCell id="risk-2" value="&lt;b&gt;second_pass lane unavailable&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;fan-out 中止 / 再実行&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#14B8A6;strokeOpacity=60;strokeWidth=1.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=14;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="1415" y="496" width="240" height="76" as="geometry"/>
+          <mxGeometry x="1415" y="566" width="240" height="68" as="geometry"/>
         </mxCell>
         <mxCell id="risk-3" value="&lt;b&gt;urgent / tiny / collision&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;blocking step が近いなら local only&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#94A3B8;strokeOpacity=60;strokeWidth=1.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=14;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="1415" y="578" width="240" height="84" as="geometry"/>
+          <mxGeometry x="1415" y="642" width="240" height="76" as="geometry"/>
         </mxCell>
         <mxCell id="risk-4" value="&lt;b&gt;implementation-critical + weak QA&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;reduce または skip fan-out&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=14;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeOpacity=60;strokeWidth=1.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=14;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="1415" y="660" width="240" height="76" as="geometry"/>
+          <mxGeometry x="1415" y="726" width="240" height="68" as="geometry"/>
         </mxCell>
 
-        <mxCell id="step-1" value="&lt;b&gt;1. 席予約&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;Devil's Advocate と second-pass lanes を fan-out 前に確保&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#14B8A6;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
+        <mxCell id="step-1" value="&lt;b&gt;1. 席予約&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;Devil's Advocate・Material Design・second-pass lanes を fan-out 前に確保&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#14B8A6;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
           <mxGeometry x="460" y="348" width="870" height="64" as="geometry"/>
         </mxCell>
         <mxCell id="step-2" value="&lt;b&gt;2. Producer 実行&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;named subagents が 2-4 本の独立 slice を担当&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;scope / non-goals / finish line / QA inventory / producer_done&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
@@ -89,13 +95,13 @@
         <mxCell id="step-4" value="&lt;b&gt;4. second_pass&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;qa_verifier or peer_verifier を各 producer に実行&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#99F6E4'&gt;record second_pass_status&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#14B8A6;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
           <mxGeometry x="460" y="584" width="870" height="72" as="geometry"/>
         </mxCell>
-        <mxCell id="step-5" value="&lt;b&gt;5. manager_synthesis_draft&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;returned findings + changed file list から統合草案を作成&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
+        <mxCell id="step-5" value="&lt;b&gt;5. manager_synthesis_draft&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;returned findings + changed file list + material review status から統合草案を作成&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
           <mxGeometry x="460" y="668" width="870" height="64" as="geometry"/>
         </mxCell>
         <mxCell id="step-6" value="&lt;b&gt;6. devil_audit&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;cross-slice audit で disposition を返す&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;missing evidence / owner / required action&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=2;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=16;spacingRight=14;spacingBottom=6;" vertex="1" parent="1">
           <mxGeometry x="460" y="744" width="870" height="72" as="geometry"/>
         </mxCell>
-        <mxCell id="step-7" value="&lt;b&gt;7. final_accept&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;all producers: manager_acceptance = accepted &amp;&amp; second_pass_status = pass&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;disposition recorded / not blocked&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#99F6E4'&gt;then final answer / merge / handoff&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=22;fillColor=#0B1220;gradientColor=#111827;gradientDirection=southEast;strokeColor=#F8FAFC;strokeWidth=2.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
+        <mxCell id="step-7" value="&lt;b&gt;7. final_accept&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;all producers: manager_acceptance = accepted &amp;&amp; second_pass_status = pass&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;material_design_status = pass|not_applicable / disposition recorded&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#99F6E4'&gt;then final answer / merge / handoff&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=22;fillColor=#0B1220;gradientColor=#111827;gradientDirection=southEast;strokeColor=#F8FAFC;strokeWidth=2.5;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=10;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
           <mxGeometry x="460" y="828" width="870" height="84" as="geometry"/>
         </mxCell>
 
@@ -103,16 +109,19 @@
           <mxGeometry x="145" y="944" width="220" height="34" as="geometry"/>
         </mxCell>
         <mxCell id="status-1" value="&lt;b&gt;manager_acceptance&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;accepted / requires adjustment / blocked&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=16;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#14B8A6;strokeWidth=1.8;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=12;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="150" y="980" width="310" height="80" as="geometry"/>
+          <mxGeometry x="150" y="980" width="250" height="80" as="geometry"/>
         </mxCell>
         <mxCell id="status-2" value="&lt;b&gt;second_pass_status&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;pass / fail / blocked&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=16;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#14B8A6;strokeWidth=1.8;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=12;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="490" y="980" width="310" height="80" as="geometry"/>
+          <mxGeometry x="430" y="980" width="250" height="80" as="geometry"/>
         </mxCell>
         <mxCell id="status-3" value="&lt;b&gt;disposition&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;accepted / blocked / resolved&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;Devil's Advocate only&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=16;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=1.8;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=12;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="830" y="980" width="280" height="80" as="geometry"/>
+          <mxGeometry x="710" y="980" width="220" height="80" as="geometry"/>
         </mxCell>
-        <mxCell id="report-card" value="&lt;b&gt;Final report contract&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;who ran / ownership / findings / QA inventory&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;evidence / unresolved risks / 3 statuses / retried-not-finished&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=1.8;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=12;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="972" width="490" height="92" as="geometry"/>
+        <mxCell id="status-4" value="&lt;b&gt;material_design_status&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#CBD5E1'&gt;pass / requires adjustment&lt;br&gt;/ not_applicable / blocked&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=16;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#38BDF8;strokeWidth=1.8;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=12;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
+          <mxGeometry x="960" y="972" width="270" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="report-card" value="&lt;b&gt;Final report contract&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px;color:#CBD5E1'&gt;who ran / ownership / findings / QA inventory&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px;color:#FED7AA'&gt;evidence / unresolved risks / 4 statuses / retried-not-finished&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#111827;gradientColor=#0B1220;gradientDirection=southEast;strokeColor=#FF8A30;strokeWidth=1.8;fontFamily=Noto Sans JP;fontSize=14;fontColor=#F8FAFC;align=left;verticalAlign=middle;spacingTop=12;spacingLeft=18;spacingRight=16;spacingBottom=6;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="972" width="370" height="92" as="geometry"/>
         </mxCell>
 
         <mxCell id="edge-flow-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;orthogonalLoop=1;html=1;exitX=0.32;exitY=1;exitPerimeter=1;entryX=0.32;entryY=0;entryPerimeter=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" parent="1" source="step-1" target="step-2">

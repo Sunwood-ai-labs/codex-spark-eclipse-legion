@@ -23,6 +23,8 @@ features:
     details: Give every Spark agent a short codename and an epithet so the final report feels deliberate and easy to scan.
   - title: Sharp ownership boundaries
     details: Split work into 2-4 independent slices, keep the critical path local, and delegate only bounded sidecar tasks.
+  - title: Mandatory design and dissent lanes
+    details: Reserve both the Devil's Advocate and the Material Design designer inside the same roster so synthesis risk and user-facing design drift are audited every run.
   - title: Manager-led delivery
     details: The main agent remains accountable for decisions and synthesis, while subagents execute explicit, bounded tasks with clear acceptance criteria.
   - title: Calm recovery paths
@@ -37,7 +39,7 @@ This repository turns the raw skill definition into a public-facing package with
 
 ![Codex Spark Eclipse Legion orchestration flow](/legion-orchestration-flow.drawio.svg)
 
-Use this diagram when you want the whole operating model on one screen: required seats on the left, the mandatory flow in the middle, reduce-fan-out rules on the right, and status/reporting rules at the bottom.
+Use this diagram when you want the whole operating model on one screen: required Devil's Advocate and Material Design seats on the left, the mandatory flow in the middle, reduce-fan-out rules on the right, and status/reporting rules at the bottom.
 
 ## What to read next
 

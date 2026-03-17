@@ -3,7 +3,7 @@
 ## 必要なもの
 
 - このスキルを参照できる Codex 環境
-- 2-4 本の独立作業に分ける意味があるタスク
+- 3-4 席のロスターにする意味があるタスク（実務上は producer 1-2 体 + 悪魔の代弁者 + Material Design 特化デザイナー）
 - 直近で必要な 1 手はローカルで持つ、という運用意識
 
 ## 導入フロー
@@ -17,8 +17,10 @@
 並列分割が伝わる短い依頼から始めるのが効果的です。
 
 ```text
-Use $codex-spark-eclipse-legion to fan this review out across three Spark subagents.
-Keep the merge decision local, but let the teammates inspect tests, docs, and release risk in parallel.
+Use $codex-spark-eclipse-legion to fan this review out across four Spark subagents.
+Keep the merge decision local.
+Reserve one Material Design designer and one Devil's Advocate.
+Let the other teammates inspect docs drift and peer verification in parallel.
 ```
 
 ## docs のローカル確認
@@ -40,4 +42,4 @@ npm run docs:build
 
 - 委譲するスライスが本当に独立している
 - 各サブエージェントに具体的な担当範囲と終了条件がある
-- 最終報告で、各チームメイトの名前、担当、返却内容が分かる
+- 最終報告で、各チームメイトの名前、担当、返却内容、最終 `material_design_status` が分かる

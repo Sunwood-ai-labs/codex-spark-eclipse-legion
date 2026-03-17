@@ -3,7 +3,7 @@
 ## What you need
 
 - A Codex environment where this skill can be listed or referenced
-- Tasks that genuinely benefit from 2-4 independent workstreams
+- Tasks that genuinely benefit from a 3-4 seat roster, usually 1-2 producers plus mandatory Devil's Advocate and Material Design support
 - Comfort with keeping the immediate blocking step local
 
 ## Installation flow
@@ -17,8 +17,10 @@
 Use a short request that makes the parallel split explicit.
 
 ```text
-Use $codex-spark-eclipse-legion to fan this review out across three Spark subagents.
-Keep the merge decision local, but let the teammates inspect tests, docs, and release risk in parallel.
+Use $codex-spark-eclipse-legion to fan this review out across four Spark subagents.
+Keep the merge decision local.
+Reserve one Material Design designer and one Devil's Advocate.
+Let the other teammates inspect docs drift and peer verification in parallel.
 ```
 
 ## Local docs workflow
@@ -40,4 +42,4 @@ npm run docs:build
 
 - The delegated slices are genuinely independent.
 - Each subagent gets a concrete ownership boundary and a finish line.
-- The final response names each teammate, their scope, and what they returned.
+- The final response names each teammate, their scope, what they returned, and the final `material_design_status`.

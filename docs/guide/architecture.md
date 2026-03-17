@@ -19,13 +19,13 @@ The structure is intentionally small so the main agent can keep control of the c
 - `references/*` provide reusable templates and recovery playbooks.
 - `docs/*` and this repository-facing prose provide operational guidance for humans and auditors.
 
-In this model, the main agent remains the single point of policy and synthesis, while subagents are expected to run bounded slices with explicit scope and a QA inventory.
+In this model, the main agent remains the single point of policy and synthesis, while subagents are expected to run bounded slices with explicit scope and a QA inventory. The same compact structure now reserves fixed seats for the Material Design designer and the Devil's Advocate inside every multi-subagent roster.
 
 ## Orchestration flow diagram
 
 ![Codex Spark Eclipse Legion orchestration flow](/legion-orchestration-flow.drawio.svg)
 
-The reusable diagram asset mirrors the governance model in `SKILL.md` and keeps the role split, canonical flow, reduce-fan-out rules, and reporting contract visible in one reference. The editable source lives at `docs/public/legion-orchestration-flow.drawio`.
+The reusable diagram asset mirrors the governance model in `SKILL.md` and keeps the required Material Design + Devil's Advocate seats, canonical flow, reduce-fan-out rules, and reporting contract visible in one reference. The editable source lives at `docs/public/legion-orchestration-flow.drawio`.
 
 ## Documentation strategy
 
