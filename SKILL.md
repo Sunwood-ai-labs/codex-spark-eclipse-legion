@@ -1,6 +1,6 @@
 ---
 name: codex-spark-eclipse-legion
-description: Summon native Codex subagents with the `gpt-5.3-codex-spark` model as a named legion with chuunibyou-style aliases, explicit ownership, mandatory Devil's Advocate and Material Design designer seats, minimal context, selective waits, and teammate-by-teammate reporting. Use when the user asks for Spark subagents, wants aggressive fan-out across 2-4 independent workstreams, or wants dramatic teammate names plus a clear report of who did what.
+description: Summon native Codex subagents with the `gpt-5.3-codex-spark` model as a named legion with readable chuunibyou-style full-name aliases, explicit ownership, mandatory Devil's Advocate and Material Design designer seats, minimal context, selective waits, and teammate-by-teammate reporting. Use when the user asks for Spark subagents, wants aggressive fan-out across 2-4 independent workstreams, or wants dramatic teammate names plus a clear report of who did what.
 ---
 
 # Codex Spark Eclipse Legion
@@ -103,16 +103,22 @@ Skip this skill when the next step is urgent, the task is tiny, or multiple agen
 
 ## Naming Ritual
 
-- Give every agent a short proper name and a dramatic epithet.
+- Give every agent a short, readable katakana full name and a dramatic, role-matched epithet.
 - Keep the pair memorable and readable.
 - Match the name to role ownership.
+- Prefer a 2-part katakana full name joined by `・`.
+- Keep each side short enough to scan quickly in repeated reports.
+- If you use kanji, keep them common and immediately readable.
+- Encourage a lightly theatrical, occult, or courtly chuunibyou tone as long as the alias stays easy to scan in repeated reports.
+- Avoid Western surnames, scientist names, and hard-to-pronounce romaji-only handles unless the user explicitly asks for them.
 - Reuse the same names throughout a turn.
 
 Good examples:
 
-- `黒羽ライト / 深淵のランキング観測者`
-- `星影レイ / 月蝕の売上追跡卿`
-- `紫苑ヴェスパー / 終焉の流行詠み`
+- `レイ・ブラウン / 境界を渡る導線守`
+- `シオン・ヴェイル / 言霊を綴る秘録官`
+- `カグラ・ノアール / 余白の結界建築士`
+- `ノクス・ヴァレン / 反証を裁く冥府の審判`
 
 Avoid names that are so long they make prompts noisy.
 
@@ -134,7 +140,7 @@ Avoid names that are so long they make prompts noisy.
 Every delegated prompt should include:
 
 - A machine-usable handle such as `subagent 2`
-- A short name and dramatic epithet
+- A short, readable katakana full name and role-matched dramatic epithet
 - Exact scope and non-goals
 - Finish line and completion criteria checklist
 - A second-pass assignment for producing outputs (`qa_verifier` or `peer_verifier`)

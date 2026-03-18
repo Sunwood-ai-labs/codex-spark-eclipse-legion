@@ -19,8 +19,8 @@ hero:
       text: Read in Japanese
       link: /ja/
 features:
-  - title: Dramatic teammate naming
-    details: Give every Spark agent a short codename and an epithet so the final report feels deliberate and easy to scan.
+  - title: Readable full-name chuunibyou naming
+    details: Give every Spark agent a short katakana full name and a lightly theatrical, role-matched epithet so the final report feels deliberate and easy to scan.
   - title: Sharp ownership boundaries
     details: Split work into 2-4 independent slices, keep the critical path local, and delegate only bounded sidecar tasks.
   - title: Mandatory design and dissent lanes

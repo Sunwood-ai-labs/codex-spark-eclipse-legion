@@ -4,9 +4,15 @@ Use these templates when you want `gpt-5.3-codex-spark` subagents to move quickl
 
 Name pattern:
 
-- proper name: 2-6 Japanese characters or a short katakana/romaji handle
-- epithet: 6-18 Japanese characters
+- proper name: a short 2-part katakana full name joined by `・`
+- prefer full-name handles that are instantly readable in repeated reports
+- keep each side compact enough that the whole alias still scans quickly
+- if you use kanji, keep them common and immediately readable
+- encourage a lightly theatrical, mystical, or courtly chuunibyou tone if readability stays high
+- avoid Western surnames, scientist names, and hard-to-pronounce romaji-only handles unless the user explicitly asks
+- epithet: 6-18 Japanese characters and role-matched enough that ownership is obvious
 - role fit matters more than pure edginess
+- sample pairs: `レイ・ブラウン / 境界を渡る導線守`, `ノヴァ・クロウ / 工程を焚く火継卿`, `カグラ・ノアール / 余白の結界建築士`, `ノクス・ヴァレン / 反証を裁く冥府の審判`
 
 All subagent prompts should include:
 

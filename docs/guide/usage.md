@@ -35,7 +35,7 @@ This repository is optimized for a manager-led workflow:
 Every delegated prompt should include:
 
 - a subagent handle such as `subagent 1`
-- a memorable name and epithet
+- a memorable, readable katakana full name and a lightly theatrical, role-matched epithet
 - an exact scope
 - a finish line that says what to return and how short to keep it
 - verification expectations, especially links or changed files when relevant
@@ -130,11 +130,11 @@ The final answer should make it obvious:
 Short report snippet example:
 
 ```text
-Regulus / Runtime Pathkeeper: cross-platform runtime packaging
+レイ・ブラウン / 境界を渡る導線守: cross-platform runtime packaging
 QA inventory performed: `uv run pytest` (18 passed), `uv run python -m compileall src` (pass), runtime smoke launch (pass)
 Status: manager_acceptance = accepted, second_pass_status = pass
 
-Vesper / Buildway Forger: build flow and CI
+ノヴァ・クロウ / 工程を焚く火継卿: build flow and CI
 QA inventory performed: `uv sync --group build` (pass), `uv run python scripts/build_desktop.py --artifact-suffix runtime-smoke` (pass)
 Status: manager_acceptance = accepted, second_pass_status = pass
 ```
@@ -151,10 +151,10 @@ Devil's Advocate return format:
 
 ```text
 Use $codex-spark-eclipse-legion.
-- subagent 1: docs drift review (producer; peer-verifies subagent 2)
-- subagent 2: docs example consistency scan (producer; peer-verifies subagent 1)
-- subagent 3: Material Design Designer (user-facing docs/UI audit; return `material_design_status`)
-- subagent 4: Devil's Advocate (cross-slice regression and evidence gap audit)
+- subagent 1 (`レイ・ブラウン / 境界を渡る導線守`): docs drift review (producer; peer-verifies subagent 2)
+- subagent 2 (`シオン・ヴェイル / 言霊を綴る秘録官`): docs example consistency scan (producer; peer-verifies subagent 1)
+- subagent 3 (`カグラ・ノアール / 余白の結界建築士`): Material Design Designer (user-facing docs/UI audit; return `material_design_status`)
+- subagent 4 (`ノクス・ヴァレン / 反証を裁く冥府の審判`): Devil's Advocate (cross-slice regression and evidence gap audit)
 
 Scope:
 - Update `docs/guide/usage.md` only.

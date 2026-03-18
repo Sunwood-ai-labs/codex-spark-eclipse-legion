@@ -16,7 +16,7 @@
 
 ## ✨ Overview
 
-Codex Spark Eclipse Legion is a focused skill for moments when one agent is not enough and a giant orchestrator would be overkill. It teaches Codex how to summon a small squad of native Spark subagents, give each one a memorable codename, keep ownership boundaries sharp, and report outcomes teammate by teammate.
+Codex Spark Eclipse Legion is a focused skill for moments when one agent is not enough and a giant orchestrator would be overkill. It teaches Codex how to summon a small squad of native Spark subagents, give each one a memorable, readable katakana full name and role-matched epithet, keep ownership boundaries sharp, and report outcomes teammate by teammate.
 
 The repository now ships a polished public surface:
 
@@ -141,7 +141,7 @@ QA inventory example:
 
 ## 🛰️ What The Skill Enforces
 
-- Dramatic but readable teammate names and epithets
+- Dramatic, readable katakana full names with a light chuunibyou edge
 - Explicit ownership for each delegated slice
 - A mandatory Material Design Designer seat for user-facing system review
 - Final reports that state which QA inventory was actually executed
